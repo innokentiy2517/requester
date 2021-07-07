@@ -31,7 +31,7 @@ const MyRequests = observer(() => {
             </thead>
             <tbody>
             {request.requests.map(req => {
-                    if (user.dep_id === req.departmentId) {
+                    if (user.user_id === req.recipientId) {
                         return <tr>
                             <td>{i++}</td>
                             <td>{req.topic}</td>
