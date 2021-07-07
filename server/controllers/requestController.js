@@ -1,14 +1,29 @@
 const {Request, Department} = require('../models/models')
 const ApiError = require('../error/ApiError')
+const User = require("../models/UserModel");
 
 class RequestController {
-    async create(req, res) {
-        let {topic, text, exp_date, author_id, recipient_id, department_id, status} = req.body
+    async create(req, res, next) {
+        let {topic, text, exp_date, author_id, recipient_id, status} = req.body
+        if(!topic || !text || !exp_date || !author_id || !recipient_id){
+            return next(ApiError.badRequest('Некорректный ввод данных!'))
+        }
+        const reqCand = await Request.findOne({where: {topic}})
+        if(reqCand){
+            return next(ApiError.badRequest('Заявка с такой темой уже существует!'))
+        }
         const dateArr = exp_date.split(' ')
         exp_date = new Date(Date.UTC(dateArr[0],dateArr[1] - 1,dateArr[2]))
-        department_id = await Department.findOne({where: {department_number: department_id}}).then(function (dep){return dep.id})
-        const request = await Request.create({topic, text, exp_date, authorId: author_id, recipientId:recipient_id, departmentId:department_id, status: status})
-        return res.json(request)
+        const department_id = await User.findOne({where: {id: recipient_id}}).then(function (user){return user.departmentId})
+        if(!status){
+            const request = await Request.create({topic, text, exp_date, authorId: author_id, recipientId:recipient_id, departmentId:department_id})
+            return res.json(request)
+        }
+        if(status){
+            const request = await Request.create({topic, text, exp_date, authorId: author_id, recipientId:recipient_id, departmentId:department_id, status: status})
+            return res.json(request)
+        }
+
     }
 
     async viewOne(req, res){
