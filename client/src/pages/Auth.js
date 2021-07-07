@@ -10,7 +10,7 @@ import {logIn, registration} from "../http/userAPI";
 const Auth = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
-    const {departments, user} = useContext(Context)
+    const {departments, user, globalStore} = useContext(Context)
     const history = useHistory()
 
     const [login, setLogin] = useState('')

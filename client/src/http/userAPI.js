@@ -18,3 +18,8 @@ export const check = async () =>{
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
+
+export const fetchUsers = async () =>{
+    const {data} = await $host.get('api/user')
+    return data
+}

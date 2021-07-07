@@ -6,6 +6,11 @@ class RequestController {
     async create(req, res, next) {
         let {topic, text, exp_date, author_id, recipient_id, status} = req.body
         if(!topic || !text || !exp_date || !author_id || !recipient_id){
+            console.log(topic)
+            console.log(text)
+            console.log(exp_date)
+            console.log(author_id)
+            console.log(recipient_id)
             return next(ApiError.badRequest('Некорректный ввод данных!'))
         }
         const reqCand = await Request.findOne({where: {topic}})
@@ -36,6 +41,10 @@ class RequestController {
         const requests = await Request.findAll()
         return res.json(requests)
     }
+
+    // async changeStatus(req,res){
+    //     const {id, status} = req.body
+    // }
 }
 
 module.exports = new RequestController()

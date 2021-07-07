@@ -11,7 +11,7 @@ class DepartmentController {
     }
 
     async getAll(req, res){
-        const departments = await Department.findAll()
+        const departments = await Department.findAll({attributes:{exclude: ['createdAt', 'updatedAt']}})
         return res.json(departments)
     }
 

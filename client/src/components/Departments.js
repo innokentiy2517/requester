@@ -29,11 +29,6 @@ const Departments = observer( () => {
                                 }})}
 
                     </td>
-                        {/*{workers.workers.map(worker =>*/}
-                        {/*    {if(worker.department_id === dep.id){*/}
-                        {/*        <td key={worker.id}>{worker.first_name} {worker.second_name}</td>*/}
-                        {/*    }}*/}
-                        {/*)}*/}
                 </tr>
             )}
             </tbody>

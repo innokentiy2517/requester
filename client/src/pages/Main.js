@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import NavMainBar from "../components/NavMainBar";
 import {Context} from "../index";
@@ -6,13 +6,22 @@ import {observer} from "mobx-react-lite";
 import Departments from "../components/Departments";
 import AllRequests from "../components/AllRequests";
 import MyRequests from "../components/MyRequests";
+import {fetchRequests} from "../http/requestAPI";
+import {fetchDepartments} from "../http/departmentAPI";
+import {fetchUsers} from "../http/userAPI";
 
 const Main = observer(() => {
-    const {globalStore} = useContext(Context)
+    const {globalStore, request,departments, workers} = useContext(Context)
     const isMyRequest = globalStore.selectedTab.name === 'Мои заявки'
     const isDepartments = globalStore.selectedTab.name === 'Отделы'
     const isAllRequests = globalStore.selectedTab.name === 'Все заявки'
-    console.log(isMyRequest)
+
+    useEffect(()=> {
+        fetchRequests().then(data => request.setRequests(data))
+        fetchDepartments().then(data => departments.setDepartments(data))
+        fetchUsers().then(data => workers.setWorkers(data))
+    }, [])
+
     return (
         <Container >
             <Row>

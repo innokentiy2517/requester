@@ -55,8 +55,13 @@ class UserController {
     }
 
     async check(req,res, next){
-        const token = generateJwt(req.user.id, req.user.login, req.user.departmentId)
+        const token = generateJwt(req.user.id, req.user.login, req.user.dep_id)
         return res.json({token})
+    }
+
+    async getAll(req,res){
+            const users = await User.findAll({attributes: {exclude: ['login', 'password', 'createdAt', 'updatedAt']}})
+        return res.json(users)
     }
 }
 
