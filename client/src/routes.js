@@ -2,7 +2,8 @@ import Admin from "./pages/Admin";
 import {
     ADMIN_ROUTE,
     DEPARTMENT_ROUTE,
-    LOGIN_ROUTE, MAIN_ROUTE,
+    LOGIN_ROUTE,
+    MAIN_ROUTE,
     REGISTRATION_ROUTE,
     REQUEST_ROUTE,
     USER_ROUTE

@@ -3,6 +3,7 @@ const router = new Router()
 const requestController = require('../controllers/requestController')
 
 router.post('/create', requestController.create)
-router.get('/:id',requestController.viewOne)
+router.post('/update', requestController.changeStatus)
+router.post('/:id',requestController.viewOne)
 router.get('/', requestController.viewAll)
 module.exports = router

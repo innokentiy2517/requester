@@ -7,7 +7,7 @@ import {fetchDepartments} from "../http/departmentAPI";
 import {fetchUsers} from "../http/userAPI";
 
 const AllRequests = observer(() => {
-    const {request, departments, workers, user} = useContext(Context)
+    const {request, departments, workers} = useContext(Context)
     useEffect(()=> {
         fetchRequests().then(data => request.setRequests(data))
         fetchDepartments().then(data => departments.setDepartments(data))
@@ -20,6 +20,7 @@ const AllRequests = observer(() => {
                 <tr>
                     <th>#</th>
                     <th>Тема</th>
+                    <th>Текст заявки</th>
                     <th>Срок выполнения</th>
                     <th>Статус заявки</th>
                     <th>Исполнитель</th>
@@ -32,6 +33,7 @@ const AllRequests = observer(() => {
                 <tr>
                     <td>{i++}</td>
                     <td>{req.topic}</td>
+                    <td>{req.text}</td>
                     <td>{req.exp_date}</td>
                     <td>{req.status}</td>
                     <td>{workers.workers.find(worker => {if(req.recipientId === worker.id){return worker}}).first_name} {workers.workers.find(worker => {if(req.recipientId === worker.id){return worker}}).second_name}</td>

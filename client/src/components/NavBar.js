@@ -1,10 +1,9 @@
 import React, {useContext, useState} from 'react';
 import {Context} from "../index";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {LOGIN_ROUTE, MAIN_ROUTE} from "../utils/consts";
 import {observer} from "mobx-react-lite";
-import {useHistory} from 'react-router-dom'
 import CreateRequest from "./modals/CreateRequest";
 
 const NavBar = observer(() => {

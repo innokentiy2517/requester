@@ -1,5 +1,4 @@
-import {$authHost, $host} from "./index";
-import jwtDecode from "jwt-decode";
+import {$host} from "./index";
 
 export const createDepartment = async (department_name, department_number) => {
     const {data} = await $host.post('api/department/create', {department_name, department_number})

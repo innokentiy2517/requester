@@ -1,4 +1,4 @@
-const {Request, Department} = require('../models/models')
+const {Request} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const User = require("../models/UserModel");
 
@@ -31,9 +31,18 @@ class RequestController {
 
     }
 
+    async changeStatus(req, res){
+        const {id, status} = req.body
+        console.log(id)
+        const request = await Request.findOne({where:{id}})
+        console.log(request)
+        await request.update({status: status})
+        return res.json(request)
+    }
+
     async viewOne(req, res){
         const {id} = req.params
-        const request = await Request.findOne({where: {id}})
+        const request = await Request.findOne({where: {id},attributes:{exclude: ['createdAt', 'updatedAt']}})
         return res.json(request)
     }
 
@@ -41,10 +50,6 @@ class RequestController {
         const requests = await Request.findAll()
         return res.json(requests)
     }
-
-    // async changeStatus(req,res){
-    //     const {id, status} = req.body
-    // }
 }
 
 module.exports = new RequestController()
