@@ -23,7 +23,6 @@ const NavBar = observer(() => {
                 {user.isAuth ?
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <Button className="mr-2" variant={"success"} onClick={() => setCreateRequestVisible(true)}>Создать заявку</Button>
-                        <Button className="mr-2" variant={"outline-info"}>Админ панель</Button>
                         <Button variant={"outline-info"} onClick={() => logOut()}>Выйти</Button>
                     </Nav>
                     :

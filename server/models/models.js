@@ -1,6 +1,3 @@
-// const DataTypes = require('sequelize')
-// const sequelize = require('../db')
-
 const User = require('./UserModel')
 const Request = require('./RequestModel')
 const Department = require('./DepartmentModel')

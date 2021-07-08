@@ -17,11 +17,6 @@ class UserController {
      */
         async registration(req, res, next){
             let {first_name, second_name, department_name, login, password} = req.body
-            console.log(first_name)
-            console.log(second_name)
-            console.log(department_name)
-            console.log(login)
-            console.log(password)
             if(!login || !password || !first_name || !second_name || !department_name){
                 return next(ApiError.badRequest('Некорректный ввод данных'))
             }
